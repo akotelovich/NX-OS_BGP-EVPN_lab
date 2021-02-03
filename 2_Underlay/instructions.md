@@ -8,7 +8,9 @@ feature interface-vlan
 ```
 
 > Command: `show system internal sysmgr service name ospf`  
+
 > Command: `show system internal sysmgr service dependency srvname ospf`  
+
 > Command: `show system internal feature-mgr feature ospf current status`  
 
 ## Building P2P connectivity
@@ -48,15 +50,17 @@ interface Vlan12
 ```
 
 > Command: `show vpc`  
-Should show VLAN 12 active on vPC peer link.
+
+Should show VLAN 12 active on vPC peer link.  
 
 > Command: `ping 10.X.12.2`  ir `.1` depends from which peer we are testing  
+
 Peer should be reachable over ICMP.  
 
-> For HW platforms, `system nve infra-vlans 12` would be needed to use VLAN 12 as fabric uplink.
+> For HW platforms, `system nve infra-vlans 12` would be needed to use VLAN 12 as fabric uplink.  
 
 Secondly, we'll configure IP connectivity to the `r-underlay` fabric transport router.  
-
+  
 Apply configuration:
 ```
 interface Ethernet1/2
@@ -71,6 +75,7 @@ interface Ethernet1/2
 ```
 
 > Command: `ping 10.X.N3.2` to verify connectivity to fabric router.  
+
 ICMP replies should be received.
 
 ## Looback interfaces for BGP and VTEPs
@@ -124,11 +129,14 @@ interface loopback1
 
 ```
 
-> Command: `show ip ospf neighbors` to verify dynamic routing sessions with vPC peer and fabric router.    
-Each switch should have two peers in FULL state.
+> Command: `show ip ospf neighbors` to verify dynamic routing sessions with vPC peer and fabric router.  
+
+Each switch should have two peers in FULL state.  
 
 > Command: `show ip route ospf-1`  
+
 > Command: `show ip ospf database [router-id] detail`   
+  
 Now you should sync to peers that are configuring other pods. At this point, if all lab members succeed, looback interface addresses of other pods should start to appear in your routing table. 
 This is essential for next steps in this configuration guide.
 

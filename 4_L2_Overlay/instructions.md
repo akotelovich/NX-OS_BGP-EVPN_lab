@@ -30,10 +30,14 @@ interface nve1
 ```
 
 > Command: `show nve vni` , `sh nve vni 20XY detail`  
-Seek for VNI state Up
+
+Seek for VNI state Up  
+  
 > Command: `show bgp l2vpn evpn vni-id 20XY`  
+
 > Command: `show bgp l2vpn evpn vni-id 2012 route-type 3`  
-Find the RD, RT and VNI values in the output 
+
+Find the RD, RT and VNI values in the output  
 
 ## Configuring endpoints
 
@@ -57,13 +61,16 @@ interface Vlan20XY
 ```
 
 > Command: `show ip interface brief`  
-SVI should be up.
+
+SVI should be up.  
+
 > Command: `sh ip vrf 2000`  
 
 ## Verify and inspect L2 overlay
 
 Let's initiate traffic from our endpoint.
 > Command: `ping vrf 2000 10.XY.200.254`  
+
 The address does not exist in the network, so only ARP requests are sent out. But that is enought for the network to learn the MAC address.  
 
 If the peer pod that shares the same L2 domain 20XY has also finished their part, you will see not only your, but the peer endpoint's podY-ep1 MAC address.
@@ -84,7 +91,6 @@ Route Distinguisher: 65000:20XY    (L2VNI 20XY)
 ```
 
 > Command: `show l2route mac topology 20XY`  
-
 ```
 Flags -(Rmac):Router MAC (Stt):Static (L):Local (R):Remote (V):vPC link 
 (Dup):Duplicate (Spl):Split (Rcv):Recv (AD):Auto-Delete (D):Del Pending
@@ -98,8 +104,10 @@ Topology    Mac Address    Prod   Flags         Seq No     Next-Hops
 
 > Command: `show l2route topology 20XY detail`  
 
+
 Verify connectivity between peer pods:
 > Command: `ping vrf 2000 10.XY.200.X|Y`, where last X|Y - is the oposing pod id  
+  
 The end result should be mutual connectivity.
 
 **End of L2 overlay configuration guide instructions**

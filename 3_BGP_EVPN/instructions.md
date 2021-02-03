@@ -10,7 +10,9 @@ feature nv overlay
 ```
 
 > Command: `show system internal sysmgr service name ospf`  
+
 > Command: `show system internal sysmgr service dependency srvname ospf`  
+
 > Command: `show system internal feature-mgr feature ospf current status`  
 
 ## Setting Anycast MAC address
@@ -52,6 +54,7 @@ router bgp 65000
 ```
 
 > Command: `show bgp l2vpn evpn summary`  
+
 Eventually all neighbors should have 0 in State column.
 
 ## Enabling VTEP functionality
@@ -66,7 +69,9 @@ interface nve1
 ```
 
 > Command: `show nve interface`  
-See the VIP address (secondary loopback1 address)
-> Command: `nve vxlan-params`  
 
+See the VIP address (secondary loopback1 address)  
+
+> Command: `nve vxlan-params`  
+  
 **End of BGP EVPN and VXLAN configuration guide instructions**
