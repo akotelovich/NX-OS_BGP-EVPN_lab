@@ -8,8 +8,8 @@ In order to deploy a L3 overlay, NX-OS needs to:
 4. Configure VRF routing under VRF
 5. Create L3 interfaces in the VRF
 
-Apply configuration:
-Step 1.
+Apply configuration:  
+Step 1.  
 Map a VRF to a VXLAN ID and Assign BGP address familiy distinguisher/targets to the VRF.
 ```
 vrf context 1000
@@ -19,7 +19,7 @@ vrf context 1000
     route-target both 65000:1000
     route-target both 65000:1000 evpn 
 ```
-Step 2.
+Step 2.  
 Create Tenant SVI that does routing from VRF to BGP EVPN peers over VXLAN.
 ```
 vlan 1000
@@ -33,13 +33,13 @@ interface Vlan1000
     ip forward
     no ipv6 redirects
 ```
-Step 3.
+Step 3.  
 Attach VXLAN tunnel to the NVE (VTEP) interface.
 ```
 interface nve1
  member vni 1000 associate-vrf
 ```
-Step 4.
+Step 4.  
 Configure VRF routing under VRF.
 ```
 route-map permit-all
@@ -48,7 +48,7 @@ router bgp 65000
     address-family ipv4 unicast
       redistribute direct route-map permit-all
 ```
-Step 5.
+Step 5.  
 Create L3 interfaces in the VRF.
 ```
 vlan 100X
@@ -63,14 +63,14 @@ interface Vlan100X
 ```
 
 > Command: `show ip interface brief vrf 1000`  
-The IP forward interface.
+The IP forward interface.  
 > Command: `show ip route vrf 1000`, or `routing-context vrf 1000` and `show ip route`    
 > Command: `show nve vni` , `show nve vni 1000 detail`  
-Seek for VNI state Up
+Seek for VNI state Up  
 > Command: `show bgp l2vpn evpn vni-id 1000`  
-Type 5 route should be present
+Type 5 route should be present  
 > Command: `show bgp l2vpn evpn vni-id 1000 route-type 5`  
-Find the RD, RT and VNI values in the output 
+Find the RD, RT and VNI values in the output  
 
 ## Configuring endpoints
 
