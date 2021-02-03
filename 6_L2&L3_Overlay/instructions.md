@@ -62,16 +62,6 @@ interface Vlan20XY
   fabric forwarding mode anycast-gateway
 ```
 
-vlan 2012
-interface Vlan2012
-  no shutdown
-  mtu 9216
-  vrf member 2000
-  no ip redirects
-  ip address 10.12.200.254/24
-  no ipv6 redirects
-  fabric forwarding mode anycast-gateway
-
 > Command: `show ip interface brief vrf 2000`  
   
 The IP forward interface.  

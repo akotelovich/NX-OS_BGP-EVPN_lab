@@ -113,7 +113,7 @@ You should the see the default route active.
 
 You should see the gateway's MAC address that you previously set as anycast mac address.
 
-## Verify and inspect L2 overlay
+## Verify and inspect L3 overlay
 
 Let's initiate traffic from our endpoint.
 > Command: `ping vrf 1000 10.Y.100.Y`, where `Y` is the oposing pod ID.  
