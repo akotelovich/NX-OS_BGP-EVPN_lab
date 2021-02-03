@@ -63,24 +63,27 @@ interface Vlan100X
 ```
 
 > Command: `show ip interface brief vrf 1000`  
-
+  
 The IP forward interface.  
+  
 > Command: `show ip route vrf 1000`, or `routing-context vrf 1000` and `show ip route`  
 
 > Command: `show nve vni` , `show nve vni 1000 detail`  
-
+  
 Seek for VNI state Up  
+
 > Command: `show bgp l2vpn evpn vni-id 1000`  
-
+  
 Type 5 route should be present  
-> Command: `show bgp l2vpn evpn vni-id 1000 route-type 5`  
 
+> Command: `show bgp l2vpn evpn vni-id 1000 route-type 5`  
+  
 Find the RD, RT and VNI values in the output  
 
 ## Configuring endpoints
 
-VRFs are used to separate routing domains between lab steps on endpoints. 
-
+VRFs are used to separate routing domains between lab steps on endpoints.  
+  
 Apply configuration on podX-ep1:
 ```
 vrf definition 1000
