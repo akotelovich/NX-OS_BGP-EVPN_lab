@@ -63,13 +63,18 @@ interface Vlan100X
 ```
 
 > Command: `show ip interface brief vrf 1000`  
+
 The IP forward interface.  
-> Command: `show ip route vrf 1000`, or `routing-context vrf 1000` and `show ip route`    
+> Command: `show ip route vrf 1000`, or `routing-context vrf 1000` and `show ip route`  
+
 > Command: `show nve vni` , `show nve vni 1000 detail`  
+
 Seek for VNI state Up  
 > Command: `show bgp l2vpn evpn vni-id 1000`  
+
 Type 5 route should be present  
 > Command: `show bgp l2vpn evpn vni-id 1000 route-type 5`  
+
 Find the RD, RT and VNI values in the output  
 
 ## Configuring endpoints
@@ -96,27 +101,30 @@ ip route vrf 1000 0.0.0.0 0.0.0.0 10.1.100.254
 ```
 
 > Command: `show ip interface brief`  
+
 SVI should be up.
 > Command: `sh ip route vrf 1000`  
+
 You should the see the default route active.
 > Command: `sh ip arp vrf 1000`  
+
 You should see the gateway's MAC address that you previously set as anycast mac address.
 
 ## Verify and inspect L2 overlay
 
 Let's initiate traffic from our endpoint.
 > Command: `ping vrf 1000 10.Y.100.Y`, where `Y` is the oposing pod ID.  
-You should get successfull ICMP responses
 
+You should get successfull ICMP responses  
 
 If the all pods have also finished their steps, you should see all networks reachable via VXLAN.
 > Command: `show bgp l2vpn evpn [vni-id 1000] [route-type 5]`  
 
-
 From the endpoints, you should also reach all other network gateways.
 > Command: `ping vrf 1000 10.X.100.254`, where `X` is 1, 2, 3 or 4.  
+
 You should get successfull ICMP responses.
 
-> Try pinging endpoints from the switch - what happens?
+> Try pinging endpoints from the switch - what happens?  
 
 **End of L3 overlay configuration guide instructions**
