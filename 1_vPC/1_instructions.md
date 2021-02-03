@@ -7,9 +7,9 @@ feature lacp
 feature vpc
 ```
 
-> `show system internal sysmgr service name vpc`
-> `show system internal sysmgr service dependency srvname vpc`
-> `show system internal feature-mgr feature vpc current status`
+> Command: `show system internal sysmgr service name vpc`  
+> Command: `show system internal sysmgr service dependency srvname vpc`  
+> Command: `show system internal feature-mgr feature vpc current status`  
 
 ```
 Service "vpc" ("vpc", 317):
@@ -22,8 +22,8 @@ Service "vpc" ("vpc", 317):
         Plugin ID: 1
 ```
 
-> `show system internal sysmgr service name lacp`
-> `show system internal sysmgr service dependency srvname lacp`
+> Command: `show system internal sysmgr service name lacp`  
+> Command: `show system internal sysmgr service dependency srvname lacp`  
 
 
 ## vPC domain and keepalive configuration
@@ -38,13 +38,14 @@ vpc domain X00
   layer3 peer-router
 ```
 
-> `show vpc`
+> Command: `show vpc`  
 
+```
 Legend:
                 (\*) - local vPC is down, forwarding via vPC peer-link
 
 vPC domain id                     : X00 
-Peer status                       : **peer link not configured**
+Peer status                       : peer link not configured
 vPC keep-alive status             : peer is alive
 Configuration consistency status  : failed
 Per-vlan consistency status       : failed
@@ -61,7 +62,7 @@ Delay-restore status              : Timer is off.(timeout = 30s)
 Delay-restore SVI status          : Timer is off.(timeout = 10s)
 Operational Layer3 Peer-router    : Disabled
 Virtual-peerlink mode             : Disabled
-
+```
 
 ## vPC Peer link configuration
 
@@ -77,8 +78,9 @@ interface Ethernet1/1
   channel-group 1 mode active
 ```
 
-> `show vpc`
+> Command: `show vpc`  
 
+```
 Legend:
                 (\*) - local vPC is down, forwarding via vPC peer-link
 
@@ -88,7 +90,7 @@ vPC keep-alive status             : peer is alive
 Configuration consistency status  : success 
 Per-vlan consistency status       : success
 Type-2 consistency status         : success 
-vPC role                          : **primary**                     
+vPC role                          : primary                     
 Number of vPCs configured         : 0
 Peer Gateway                      : Enabled
 Dual-active excluded VLANs        : -
@@ -104,8 +106,9 @@ vPC Peer-link status
 id    Port   Status Active vlans
 --    ----   ------ -------------------------------------------------
 1     Po1    up     1
+```
 
-> `show vpc consistency-parameters global`
+> Command: `show vpc consistency-parameters global`  
 
 ## vPC configuration
 
@@ -123,7 +126,7 @@ interface Ethernet1/3
 ```
 
 After adding to one member check:
-> `show vpc`
+> Command: `show vpc`  
 ```
 vPC status
 ----------------------------------------------------------------------------
@@ -133,12 +136,12 @@ Id    Port          Status Consistency Reason                Active vlans
                                        corresponding vPC        
 ```
 
-> `show vpc consistency-parameters interface port-channel 1003`
-> `show vpc consistency-parameters vpc 1003`
+> Command: `show vpc consistency-parameters interface port-channel 1003`  
+> Command: `show vpc consistency-parameters vpc 1003`  
 
 Apply configuration to n-2.
 
-> `show vpc`
+> Command: `show vpc`  
 
 ```
 vPC status
@@ -151,7 +154,7 @@ Id    Port          Status Consistency Reason                Active vlans
 
 ## Adding vlans to vPC
 
-> `show vpc`
+> Command: `show vpc`  
 Check field `Active vlans` for vpc 1003
 
 Apply configuration to n-1:
@@ -162,10 +165,10 @@ interface port-channel1003
   switchport trunk allowed vlan add 100X,20XY
 ```
 
-> `show vpc`
+> `show vpc`  
  Only VLAN 1 in `Active vlans` section.
 
-> `show vpc consistency-parameters interface port-channel 1003`
+> Command: `show vpc consistency-parameters interface port-channel 1003`  
 
 ```
 [ OMITTED OUTPUT ... ]            
@@ -173,17 +176,17 @@ Allowed VLANs               -     1,100X,20XY            1
 Local suspended VLANs       -     100X,20XY              -
 ```
 
-> `sh logging | grep suspended`
+> Command: `sh logging | grep suspended`  
 
 Apply configuration to n-2
 
-> `show vpc`
- All vlans active in `Active vlans` section. 
+> Command: `show vpc`  
+ All vlans active in `Active vlans` section.  
 
-> `show vpc consistency-parameters interface port-channel 1003 | diff`
-No susspended VLANs.
+> Command: `show vpc consistency-parameters interface port-channel 1003 | diff`  
+No susspended VLANs.  
 
-> `sh logging | grep suspended | diff`
+> Command: `sh logging | grep suspended | diff`  
 
 ```
 > 2021 Feb  3 14:54:17 podX-n1 %ETHPORT-3-IF_ERROR_VLANS_REMOVED: VLANs 100X on Interface port-channel1003 are removed from suspended state.
@@ -197,6 +200,5 @@ No susspended VLANs.
 > 2021 Feb  3 14:54:24 podX-n1 %ETHPORT-3-IF_ERROR_VLANS_REMOVED: VLANs 20XY on Interface port-channel1 are removed from suspended state.
 > 2021 Feb  3 14:54:24 podX-n1 %ETHPORT-3-IF_ERROR_VLANS_REMOVED: VLANs 20XY on Interface port-channel1003 are removed from suspended state.
 ```
-
 
 **End of vPC configuration guide instructions**
