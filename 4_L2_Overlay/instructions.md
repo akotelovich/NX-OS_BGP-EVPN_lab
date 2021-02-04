@@ -31,13 +31,13 @@ interface nve1
 
 > Command: `show nve vni` , `sh nve vni 20XY detail`  
 
-Seek for VNI state Up  
+Seek for VNI state Up.  
   
 > Command: `show bgp l2vpn evpn vni-id 20XY`  
 
 > Command: `show bgp l2vpn evpn vni-id 2012 route-type 3`  
 
-Find the RD, RT and VNI values in the output  
+Find the RD, RT and VNI values in the output.  
 
 ## Configuring endpoints
 
@@ -103,8 +103,7 @@ Topology    Mac Address    Prod   Flags         Seq No     Next-Hops
 ```
 
 > Command: `show l2route topology 20XY detail`  
-
-
+  
 Verify connectivity between peer pods:
 > Command: `ping vrf 2000 10.XY.200.X|Y`, where last X|Y - is the oposing pod id  
   

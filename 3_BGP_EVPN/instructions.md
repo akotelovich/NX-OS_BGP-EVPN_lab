@@ -26,7 +26,7 @@ fabric forwarding anycast-gateway-mac 2021.2021.2021
 
 ## Configuring BGP
 
-Here we enable BGP routing and configure a full mesh to all lab memebers
+Here we enable BGP routing and configure a full mesh to all lab memebers.
 
 Apply configuration:
 ```
@@ -70,7 +70,7 @@ interface nve1
 
 > Command: `show nve interface`  
 
-See the VIP address (secondary loopback1 address)  
+See the VIP address (secondary loopback1 address).  
 
 > Command: `nve vxlan-params`  
   

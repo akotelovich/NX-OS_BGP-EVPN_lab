@@ -139,7 +139,7 @@ Id    Port          Status Consistency Reason                Active vlans
 > Command: `show vpc consistency-parameters interface port-channel 1003`  
 > Command: `show vpc consistency-parameters vpc 1003`  
 
-Apply configuration to n-2.
+Apply configuration to n-2:
 
 > Command: `show vpc`  
 
@@ -159,7 +159,9 @@ Check field `Active vlans` for vpc 1003
 
 Apply configuration to n-1:
 ```
+! X - pod # - 1, 2, 3 or 4
 vlan 100X
+! XY - pod pair # - 12 or 34
 vlan 20XY
 interface port-channel1003
   switchport trunk allowed vlan add 100X,20XY
@@ -178,7 +180,15 @@ Local suspended VLANs       -     100X,20XY              -
 
 > Command: `sh logging | grep suspended`  
 
-Apply configuration to n-2
+Apply configuration to n-2:
+```
+! X - pod # - 1, 2, 3 or 4
+vlan 100X
+! XY - pod pair # - 12 or 34
+vlan 20XY
+interface port-channel1003
+  switchport trunk allowed vlan add 100X,20XY
+```
 
 > Command: `show vpc`  
  All vlans active in `Active vlans` section.  

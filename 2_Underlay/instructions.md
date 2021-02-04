@@ -53,7 +53,7 @@ interface Vlan12
 
 Should show VLAN 12 active on vPC peer link.  
 
-> Command: `ping 10.X.12.2`  ir `.1` depends from which peer we are testing  
+> Command: `ping 10.X.12.2` or `.1` depends from which peer we are testing.  
 
 Peer should be reachable over ICMP.  
 
@@ -80,7 +80,7 @@ ICMP replies should be received.
 
 ## Looback interfaces for BGP and VTEPs
 
-Here we create the interfaces for routing session and VTEP (VXLAN tunnel) source addressing
+Here we create the interfaces for routing session and VTEP (VXLAN tunnel) source addressing.
 
 Apply configuration:
 ```
@@ -109,7 +109,7 @@ router ospf 1
   auto-cost reference-bandwidth 1000 Gbps
 ```
 
-Include interfaces into OSPF 1 routing protocol process
+Include interfaces into OSPF 1 routing protocol process.
 
 Apply configuration:
 ```
